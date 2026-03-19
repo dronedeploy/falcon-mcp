@@ -1,0 +1,30 @@
+---
+title: Identity Protection
+description: Comprehensive entity investigation and identity protection analysis.
+---
+
+# Identity Protection Module
+
+Comprehensive entity investigation and identity protection analysis.
+
+## API Scopes
+
+- `Identity Protection Assessment:read`
+- `Identity Protection Detections:read`
+- `Identity Protection Entities:read`
+- `Identity Protection Timeline:read`
+- `Identity Protection GraphQL:write`
+
+## Tools
+
+### `falcon_investigate_entity`
+
+**Required scopes:** `Identity Protection Assessment:read`, `Identity Protection Detections:read`, `Identity Protection Entities:read`, `Identity Protection Timeline:read`, `Identity Protection GraphQL:write`
+
+Comprehensive entity investigation tool.
+
+This tool provides complete entity investigation capabilities including:
+- Entity search and details lookup
+- Activity timeline analysis
+- Relationship and association mapping
+- Risk assessment
