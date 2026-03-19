@@ -1,0 +1,583 @@
+---
+// CrowdStrike branded hero section with animations
+---
+
+<div class="hero">
+  <!-- Animated geometric grid background -->
+  <div class="hero-bg">
+    <div class="grid-lines"></div>
+    <div class="grid-glow"></div>
+  </div>
+
+  <div class="hero-content anim-fade-up" style="--delay: 0s">
+    <h1 class="hero-title">
+      <span class="hero-falcon">Falcon</span> MCP Server
+    </h1>
+    <p class="hero-tagline">
+      <span class="tagline-text"></span><span class="cursor">|</span>
+    </p>
+    <div class="hero-actions anim-fade-up" style="--delay: 1.8s">
+      <a href="/falcon-mcp/getting-started/installation/" class="hero-btn hero-btn-primary">
+        Get Started
+      </a>
+      <a href="https://github.com/CrowdStrike/falcon-mcp" class="hero-btn hero-btn-secondary">
+        View on GitHub
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-features">
+    <div class="feature-card anim-slide-up" style="--delay: 2.2s">
+      <div class="feature-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      </div>
+      <div class="feature-label">Security at Scale</div>
+      <p>Query hosts, detections, and vulnerabilities across your entire fleet</p>
+    </div>
+    <div class="feature-card anim-slide-up" style="--delay: 2.4s">
+      <div class="feature-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4c0 1.95-1.4 3.57-3.25 3.92L12 22"/><path d="M8 6a4 4 0 0 1 8 0"/><path d="M17 12.5c1.77.62 3 2.28 3 4.25A4.75 4.75 0 0 1 15.25 21H8.75A4.75 4.75 0 0 1 4 16.75c0-1.97 1.23-3.63 3-4.25"/></svg>
+      </div>
+      <div class="feature-label">AI-Native</div>
+      <p>Purpose-built for LLM tool use via the Model Context Protocol</p>
+    </div>
+    <div class="feature-card anim-slide-up" style="--delay: 2.6s">
+      <div class="feature-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+      </div>
+      <div class="feature-label">Deploy Anywhere</div>
+      <p>stdio, SSE, and streamable-HTTP for any environment</p>
+    </div>
+  </div>
+
+  <div class="hero-install anim-fade-up" style="--delay: 3s">
+    <div class="install-title">Quick Start</div>
+    <div class="install-tabs">
+      <button class="install-tab active" data-tab="pip">pip</button>
+      <button class="install-tab" data-tab="uv">uv</button>
+    </div>
+    <div class="install-terminal">
+      <div class="terminal-header">
+        <div class="terminal-dots">
+          <span></span><span></span><span></span>
+        </div>
+        <button class="terminal-copy" aria-label="Copy to clipboard" title="Copy to clipboard">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        </button>
+      </div>
+      <div class="terminal-body">
+        <span class="terminal-prompt">$</span>
+        <code class="terminal-cmd" data-pip="pip install falcon-mcp" data-uv="uv tool install falcon-mcp">pip install falcon-mcp</code>
+        <span class="terminal-cursor"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const taglineText = 'Connect AI assistants to the CrowdStrike Falcon platform.';
+  const taglineEl = document.querySelector('.tagline-text');
+  const alreadyPlayed = sessionStorage.getItem('heroAnimPlayed');
+
+  if (alreadyPlayed) {
+    // Show everything instantly — no entrance animations
+    document.querySelectorAll('.anim-slide-up, .anim-fade-up').forEach(el => {
+      (el as HTMLElement).style.transition = 'none';
+      el.classList.add('visible');
+    });
+    taglineEl!.textContent = taglineText;
+  } else {
+    // Typewriter effect for tagline
+    let i = 0;
+    function typeWriter() {
+      if (i < taglineText.length) {
+        taglineEl!.textContent += taglineText.charAt(i);
+        i++;
+        setTimeout(typeWriter, 30);
+      } else {
+        sessionStorage.setItem('heroAnimPlayed', '1');
+      }
+    }
+
+    // Start typing after title animation
+    setTimeout(typeWriter, 600);
+
+    // Intersection Observer for scroll-triggered card animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.anim-slide-up, .anim-fade-up').forEach(el => {
+      observer.observe(el);
+    });
+  }
+
+  // Install tab toggle (always active)
+  document.querySelectorAll('.install-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.install-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const pkg = (tab as HTMLElement).dataset.tab!;
+      const cmd = document.querySelector('.terminal-cmd') as HTMLElement;
+      cmd.textContent = cmd.dataset[pkg]!;
+    });
+  });
+
+  // Copy button (always active)
+  document.querySelector('.terminal-copy')?.addEventListener('click', () => {
+    const cmd = document.querySelector('.terminal-cmd') as HTMLElement;
+    navigator.clipboard.writeText(cmd.textContent || '');
+    const btn = document.querySelector('.terminal-copy') as HTMLElement;
+    btn.classList.add('copied');
+    setTimeout(() => btn.classList.remove('copied'), 1500);
+  });
+</script>
+
+<style>
+  /* ===== Hero container ===== */
+  .hero {
+    position: relative;
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  /* ===== Animated geometric grid background ===== */
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .grid-lines {
+    position: absolute;
+    inset: -50%;
+    background-image:
+      linear-gradient(rgba(236, 0, 0, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(236, 0, 0, 0.06) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridDrift 20s linear infinite;
+  }
+
+  .grid-glow {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(236, 0, 0, 0.08) 0%, transparent 70%);
+    animation: glowPulse 4s ease-in-out infinite;
+  }
+
+  @keyframes gridDrift {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(60px, 60px); }
+  }
+
+  @keyframes glowPulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+
+  /* ===== Entrance animations ===== */
+  .anim-fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    transition-delay: var(--delay, 0s);
+  }
+
+  .anim-fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .anim-slide-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--delay, 0s);
+  }
+
+  .anim-slide-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ===== Hero content ===== */
+  .hero-content {
+    position: relative;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0 0 1rem;
+    color: #fff;
+  }
+
+  .hero-falcon {
+    color: #EC0000;
+  }
+
+  /* ===== Typewriter tagline ===== */
+  .hero-tagline {
+    font-size: 1.25rem;
+    color: #A7A9AC;
+    margin: 0 0 2rem;
+    line-height: 1.5;
+    min-height: 1.875rem;
+  }
+
+  .cursor {
+    display: inline-block;
+    color: #EC0000;
+    animation: blink 0.7s step-end infinite;
+    font-weight: 300;
+    margin-left: 1px;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  /* ===== Buttons ===== */
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+
+  .hero-btn {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+  }
+
+  .hero-btn-primary {
+    background: #EC0000;
+    color: #fff !important;
+    border: 2px solid #EC0000;
+    box-shadow: 0 0 0 0 rgba(236, 0, 0, 0);
+  }
+
+  .hero-btn-primary:hover {
+    background: #B52026;
+    border-color: #B52026;
+    box-shadow: 0 4px 20px rgba(236, 0, 0, 0.4);
+    transform: translateY(-1px);
+  }
+
+  .hero-btn-secondary {
+    background: transparent;
+    color: #EC0000 !important;
+    border: 2px solid #EC0000;
+  }
+
+  .hero-btn-secondary:hover {
+    background: rgba(236, 0, 0, 0.1);
+    box-shadow: 0 4px 20px rgba(236, 0, 0, 0.2);
+    transform: translateY(-1px);
+  }
+
+  /* ===== Feature cards — equal height with aligned content ===== */
+  .hero-features {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: stretch;
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto 3rem;
+  }
+
+  .feature-card {
+    background: #111111;
+    border-left: 3px solid #EC0000;
+    padding: 1.5rem;
+    text-align: left;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-sizing: border-box;
+    margin: 0 !important;
+  }
+
+  .feature-card:hover {
+    background: #161616;
+    box-shadow: 0 0 30px rgba(236, 0, 0, 0.1), inset 0 0 30px rgba(236, 0, 0, 0.02);
+    transform: translateY(-2px);
+  }
+
+  .feature-icon {
+    color: #EC0000;
+    line-height: 1;
+    height: 28px;
+    margin-bottom: 0.75rem;
+  }
+
+  .feature-label {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 0.5rem;
+  }
+
+  .feature-card p {
+    font-size: 0.85rem;
+    color: #A7A9AC;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* ===== Install terminal ===== */
+  .hero-install {
+    position: relative;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .install-title {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #A7A9AC;
+    margin-bottom: 0.75rem;
+  }
+
+  .install-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: -1px;
+    position: relative;
+    z-index: 1;
+    padding-left: 12px;
+  }
+
+  .install-tab {
+    background: transparent;
+    border: 1px solid #333;
+    border-bottom: none;
+    color: #888;
+    padding: 0.5rem 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    cursor: pointer;
+    border-radius: 6px 6px 0 0;
+    transition: all 0.2s;
+    min-width: 5rem;
+    text-align: center;
+    margin: 0 !important;
+  }
+
+  .install-tab.active {
+    background: #1a1a1a;
+    color: #EC0000;
+    border-color: #444;
+    border-bottom: 2px solid #1a1a1a;
+  }
+
+  .install-tab:hover:not(.active) {
+    color: #ccc;
+  }
+
+  .install-terminal {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 0 0 6px 6px;
+    overflow: hidden;
+    margin: 0 !important;
+  }
+
+  .terminal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px 0;
+    border-bottom: 2px solid #EC0000;
+    padding-bottom: 10px;
+  }
+
+  .terminal-dots {
+    display: flex;
+    gap: 6px;
+  }
+
+  .terminal-dots span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  .terminal-dots span:first-child { background: #ff5f57; }
+  .terminal-dots span:nth-child(2) { background: #ffbd2e; }
+  .terminal-dots span:last-child { background: #28ca42; }
+
+  .terminal-copy {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    padding: 2px;
+    line-height: 1;
+    transition: color 0.2s;
+  }
+
+  .terminal-copy:hover {
+    color: #ccc;
+  }
+
+  .terminal-copy.copied {
+    color: #28ca42;
+  }
+
+  .terminal-body {
+    padding: 1rem 1.25rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.95rem;
+    text-align: left;
+  }
+
+  .terminal-prompt {
+    color: #EC0000;
+    margin-right: 0.5rem;
+    user-select: none;
+  }
+
+  .terminal-cmd {
+    color: #F8F8F8 !important;
+    background: none !important;
+    padding: 0 !important;
+    font-size: inherit;
+  }
+
+  .terminal-cursor {
+    display: inline-block;
+    width: 8px;
+    height: 1.1em;
+    background: #EC0000;
+    vertical-align: text-bottom;
+    margin-left: 2px;
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 700px) {
+    .hero-features {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ===== Light mode overrides ===== */
+  :global([data-theme='light']) .hero-title {
+    color: #000;
+  }
+
+  :global([data-theme='light']) .hero-tagline {
+    color: #555;
+  }
+
+  :global([data-theme='light']) .feature-card {
+    background: #ffffff;
+    border: 1px solid #e8e8e8;
+    border-left: 3px solid #EC0000;
+  }
+
+  :global([data-theme='light']) .feature-card:hover {
+    background: #ffffff;
+    box-shadow: 0 0 30px rgba(236, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.06);
+  }
+
+  :global([data-theme='light']) .feature-label {
+    color: #000;
+  }
+
+  :global([data-theme='light']) .feature-card p {
+    color: #666;
+  }
+
+  :global([data-theme='light']) .grid-lines {
+    background-image:
+      linear-gradient(rgba(236, 0, 0, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(236, 0, 0, 0.04) 1px, transparent 1px);
+  }
+
+  :global([data-theme='light']) .grid-glow {
+    background: radial-gradient(ellipse, rgba(236, 0, 0, 0.05) 0%, transparent 70%);
+  }
+
+  :global([data-theme='light']) .install-title {
+    color: #555;
+  }
+
+  :global([data-theme='light']) .install-tab {
+    background: transparent;
+    border: 1px solid #d0d0d0;
+    border-bottom: none;
+    color: #888;
+  }
+
+  :global([data-theme='light']) .install-tab.active {
+    background: #eeeeee;
+    color: #EC0000;
+    border-color: #d0d0d0;
+    border-bottom: 2px solid #eeeeee;
+  }
+
+  :global([data-theme='light']) .install-tab:hover:not(.active) {
+    color: #333;
+  }
+
+  :global([data-theme='light']) .install-terminal {
+    background: #F8F8F8;
+    border: 1px solid #d0d0d0;
+  }
+
+  :global([data-theme='light']) .terminal-header {
+    background: #eeeeee;
+  }
+
+  :global([data-theme='light']) .terminal-dots span:first-child { background: #ff5f57; }
+  :global([data-theme='light']) .terminal-dots span:nth-child(2) { background: #ffbd2e; }
+  :global([data-theme='light']) .terminal-dots span:last-child { background: #28ca42; }
+
+  :global([data-theme='light']) .terminal-copy {
+    color: #999;
+  }
+
+  :global([data-theme='light']) .terminal-copy:hover {
+    color: #333;
+  }
+
+  :global([data-theme='light']) .terminal-cmd {
+    color: #403F53 !important;
+  }
+
+  :global([data-theme='light']) .terminal-prompt {
+    color: #403F53;
+  }
+
+  :global([data-theme='light']) .terminal-cursor {
+    background: #403F53;
+  }
+</style>

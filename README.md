@@ -85,7 +85,7 @@ The Falcon MCP Server supports different modules, each requiring specific API sc
 
 | Module | Required API Scopes | Purpose |
 | - | - | - |
-| **Cloud Security** | `Falcon Container Image:read`<br>`Cloud Security API Assets:Read` | Find and analyze kubernetes containers inventory, container images vulnerabilities, and CSPM cloud asset inventory |
+| **Cloud Security** | `Falcon Container Image:read`<br>`Cloud Security API Assets:read` | Find and analyze kubernetes containers inventory, container images vulnerabilities, and CSPM cloud asset inventory |
 | **Core** | _No additional scopes_ | Basic connectivity and system information |
 | **Custom IOA** | `Custom IOA Rules:read`<br>`Custom IOA Rules:write` | Create and manage Custom IOA behavioral detection rules and rule groups |
 | **Detections** | `Alerts:read` | Find and analyze detections to understand malicious activity |

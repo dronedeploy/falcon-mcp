@@ -1,0 +1,88 @@
+import { defineConfig } from 'astro/config';
+import starlight from '@astrojs/starlight';
+
+export default defineConfig({
+  site: 'https://crowdstrike.github.io',
+  base: '/falcon-mcp',
+  integrations: [
+    starlight({
+      title: 'FALCON MCP',
+      logo: {
+        light: './src/assets/logo-light.svg',
+        dark: './src/assets/logo-dark.svg',
+        replacesTitle: false,
+      },
+      social: {
+        github: 'https://github.com/CrowdStrike/falcon-mcp',
+      },
+      customCss: ['./src/styles/custom.css'],
+      sidebar: [
+        {
+          label: 'Getting Started',
+          items: [
+            { label: 'Installation', slug: 'getting-started/installation' },
+            { label: 'API Credentials', slug: 'getting-started/credentials' },
+            { label: 'Configuration', slug: 'getting-started/configuration' },
+            { label: 'Quick Start', slug: 'getting-started/quickstart' },
+          ],
+        },
+        {
+          label: 'Usage',
+          items: [
+            { label: 'CLI Commands', slug: 'usage/cli' },
+            { label: 'Transport Methods', slug: 'usage/transports' },
+            { label: 'Editor Integration', slug: 'usage/editor-integration' },
+            { label: 'Flight Control (MSSP)', slug: 'usage/flight-control' },
+          ],
+        },
+        {
+          label: 'Modules',
+          items: [
+            { label: 'Overview', slug: 'modules/overview' },
+            { label: 'Cloud Security', slug: 'modules/cloud' },
+            { label: 'Custom IOA', slug: 'modules/custom-ioa' },
+            { label: 'Detections', slug: 'modules/detections' },
+            { label: 'Discover', slug: 'modules/discover' },
+            { label: 'Firewall', slug: 'modules/firewall' },
+            { label: 'Hosts', slug: 'modules/hosts' },
+            { label: 'Identity Protection', slug: 'modules/idp' },
+            { label: 'Incidents', slug: 'modules/incidents' },
+            { label: 'Intel', slug: 'modules/intel' },
+            { label: 'IOC', slug: 'modules/ioc' },
+            { label: 'NGSIEM', slug: 'modules/ngsiem' },
+            { label: 'Scheduled Reports', slug: 'modules/scheduled-reports' },
+            { label: 'Sensor Usage', slug: 'modules/sensor-usage' },
+            { label: 'Serverless', slug: 'modules/serverless' },
+            { label: 'Spotlight', slug: 'modules/spotlight' },
+          ],
+        },
+        {
+          label: 'Deployment',
+          items: [
+            { label: 'Docker', slug: 'deployment/docker' },
+            { label: 'Amazon Bedrock', slug: 'deployment/amazon-bedrock' },
+            { label: 'Google Cloud', slug: 'deployment/google-cloud' },
+          ],
+        },
+        {
+          label: 'Development',
+          items: [
+            { label: 'Contributing', slug: 'development/contributing' },
+            { label: 'Module Development', slug: 'development/module-development' },
+            { label: 'Resource Development', slug: 'development/resource-development' },
+            { label: 'Integration Testing', slug: 'development/integration-testing' },
+            { label: 'E2E Testing', slug: 'development/e2e-testing' },
+          ],
+        },
+        {
+          label: 'Examples',
+          items: [
+            { label: 'Basic Usage', slug: 'examples/basic-usage' },
+            { label: 'MCP Config', slug: 'examples/mcp-config' },
+          ],
+        },
+        { label: 'Changelog', slug: 'changelog' },
+      ],
+    }),
+  ],
+});
