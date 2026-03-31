@@ -3,8 +3,6 @@ title: Detections
 description: Find and analyze detections to understand malicious activity in your environment.
 ---
 
-# Detections Module
-
 Find and analyze detections to understand malicious activity in your environment.
 
 ## API Scopes

@@ -3,8 +3,6 @@ title: Incidents
 description: Analyze security incidents, behaviors, and coordinated activities.
 ---
 
-# Incidents Module
-
 Analyze security incidents, behaviors, and coordinated activities.
 
 ## API Scopes

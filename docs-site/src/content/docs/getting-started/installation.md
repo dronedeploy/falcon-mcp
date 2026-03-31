@@ -7,7 +7,7 @@ description: Install the Falcon MCP Server using uv or pip.
 
 - Python 3.11 or higher
 - [`uv`](https://docs.astral.sh/uv/) or pip
-- CrowdStrike Falcon API credentials
+- CrowdStrike Falcon API credentials ([see API Credentials](/falcon-mcp/getting-started/credentials))
 
 ## Install using uv
 

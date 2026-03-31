@@ -3,8 +3,6 @@ title: Intel
 description: Research threat actors, IOCs, and intelligence reports.
 ---
 
-# Intel Module
-
 Research threat actors, IOCs, and intelligence reports.
 
 ## API Scopes

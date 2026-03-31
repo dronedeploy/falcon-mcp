@@ -3,8 +3,6 @@ title: Spotlight
 description: Manage and analyze vulnerability data and security assessments.
 ---
 
-# Spotlight Module
-
 Manage and analyze vulnerability data and security assessments.
 
 ## API Scopes

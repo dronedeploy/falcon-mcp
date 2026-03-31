@@ -3,8 +3,6 @@ title: NGSIEM
 description: Execute CQL queries against CrowdStrike Next-Gen SIEM.
 ---
 
-# NGSIEM Module
-
 Execute CQL queries against CrowdStrike Next-Gen SIEM.
 
 ## API Scopes

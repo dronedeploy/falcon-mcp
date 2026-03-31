@@ -1,13 +1,12 @@
-/* ===== Structural / layout overrides only ===== */
-/* Brand theming removed — Starlight defaults apply */
-
-/* ===== Headings ===== */
-.sl-markdown-content h1,
-.sl-markdown-content h2,
-.sl-markdown-content h3,
-.sl-markdown-content h4 {
-  font-weight: 700;
+/* ===== Glass header — override Starlight's unlayered opaque --sl-color-bg-nav ===== */
+/* Galaxy's @layer galaxy cannot beat Starlight's unlayered styles, so this must live here. */
+:root {
+  --sl-color-bg-nav: transparent;
 }
+:root[data-theme='light'] {
+  --sl-color-bg-nav: transparent;
+}
+
 
 /* ===== Expressive Code terminal dots — colored macOS style ===== */
 .expressive-code .frame.is-terminal .header::before {
@@ -18,27 +17,11 @@
   opacity: 1 !important;
 }
 
-/* ===== Homepage Quick Start section ===== */
-.homepage-install {
-  max-width: 480px;
-  margin: 0 auto 3rem;
-  text-align: center;
-}
-
-.homepage-install h2 {
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: var(--sl-color-gray-3);
-  border: none;
-}
-
-.homepage-install .expressive-code {
-  text-align: left;
-}
-
-/* ===== Tables — prevent inline code from wrapping ===== */
+/* ===== Tables — prevent inline code and first-column text from wrapping ===== */
 .sl-markdown-content table code {
+  white-space: nowrap;
+}
+
+.sl-markdown-content table :is(th, td):first-child {
   white-space: nowrap;
 }

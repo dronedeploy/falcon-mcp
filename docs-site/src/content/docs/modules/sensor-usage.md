@@ -3,8 +3,6 @@ title: Sensor Usage
 description: Access and analyze sensor usage data.
 ---
 
-# Sensor Usage Module
-
 Access and analyze sensor usage data.
 
 ## API Scopes

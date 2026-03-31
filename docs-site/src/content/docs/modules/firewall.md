@@ -3,8 +3,6 @@ title: Firewall Management
 description: Search and manage Falcon firewall rules and rule groups.
 ---
 
-# Firewall Management Module
-
 Search and manage Falcon firewall rules and rule groups.
 
 ## API Scopes

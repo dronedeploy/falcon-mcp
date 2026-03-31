@@ -11,9 +11,24 @@ export default defineConfig({
         github: 'https://github.com/CrowdStrike/falcon-mcp',
       },
       expressiveCode: {
-        themes: ['github-dark-default', 'github-light-default']
+        // themes: ['github-dark-high-contrast', 'light-plus'],
+        styleOverrides: {
+          borderRadius: '0.4rem',
+          borderColor: 'var(--fb-code-block-bg-color)',
+          codeBackground: 'var(--fb-code-block-bg-color)',
+          frames: {
+            shadowColor: 'var(--sl-shadow-sm)',
+            editorActiveTabIndicatorTopColor: 'unset',
+            editorActiveTabIndicatorBottomColor: 'var(--sl-color-gray-3)',
+            editorTabBarBorderBottomColor: 'var(--fb-code-block-bg-color)',
+            frameBoxShadowCssValue: 'unset',
+          },
+        },
       },
-      customCss: ['./src/styles/custom.css'],
+      customCss: [
+        './src/styles/galaxy/index.css',
+        './src/styles/custom.css',
+      ],
       sidebar: [
         {
           label: 'Getting Started',

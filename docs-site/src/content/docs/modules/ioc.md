@@ -3,8 +3,6 @@ title: IOC
 description: Search, create, and remove custom indicators of compromise.
 ---
 
-# IOC Module
-
 Search, create, and remove custom indicators of compromise.
 
 ## API Scopes

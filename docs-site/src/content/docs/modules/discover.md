@@ -3,8 +3,6 @@ title: Discover
 description: Search and analyze application inventory and unmanaged assets across your environment.
 ---
 
-# Discover Module
-
 Search and analyze application inventory and unmanaged assets across your environment.
 
 ## API Scopes

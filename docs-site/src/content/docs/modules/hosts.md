@@ -3,8 +3,6 @@ title: Hosts
 description: Manage and query host/device information across your CrowdStrike environment.
 ---
 
-# Hosts Module
-
 Manage and query host/device information across your CrowdStrike environment.
 
 ## API Scopes

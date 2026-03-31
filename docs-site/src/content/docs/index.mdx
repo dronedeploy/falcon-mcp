@@ -2,35 +2,67 @@
 title: Falcon MCP Server
 description: Connect AI assistants to the CrowdStrike Falcon platform via the Model Context Protocol.
 template: splash
+hero:
+  title: Falcon MCP Server
+  tagline: Connect AI assistants to the CrowdStrike Falcon platform via the Model Context Protocol
+  image:
+    file: ../../assets/pinchy-spider.jpg
+    alt: CrowdStrike
+  actions:
+    - text: Get Started
+      link: /falcon-mcp/getting-started/installation/
+      variant: primary
+      icon: right-arrow
+    - text: View on GitHub
+      link: https://github.com/CrowdStrike/falcon-mcp
+      variant: secondary
+      icon: github
+      attrs:
+        target: _blank
+        rel: noopener noreferrer
 ---
 
-import Hero from '../../components/Hero.astro';
-import { Tabs, TabItem } from '@astrojs/starlight/components';
+import { Tabs, TabItem, CardGrid, Card } from '@astrojs/starlight/components';
+import ImageCard from '../../components/ImageCard.astro';
 
-<style>{`
-  /* Hide Starlight's auto-generated page title on the homepage */
-  .content-panel > .sl-container > h1#_top {
-    display: none;
-  }
-`}</style>
+<CardGrid>
+  <Card title="AI-Powered Security Ops" icon="rocket">
+    Let AI agents investigate threats, triage detections, and analyze incidents across your Falcon environment.
+  </Card>
+  <Card title="Full Spectrum Coverage" icon="puzzle">
+    Detections, incidents, hosts, vulnerabilities, intel, IOCs, and more through a single MCP interface.
+  </Card>
+  <Card title="Deploy Anywhere" icon="laptop">
+    Run as a CLI tool, Docker container, or deploy to AWS Bedrock and Google Cloud.
+  </Card>
+</CardGrid>
 
-<Hero />
-
-<div class="homepage-install">
-
-## Quick Start
+{/* ## Quick Start
 
 <Tabs syncKey="pkg">
+  <TabItem label="uv (recommended)">
+    ```bash
+    uv tool install falcon-mcp
+    ```
+  </TabItem>
   <TabItem label="pip">
     ```bash
     pip install falcon-mcp
     ```
   </TabItem>
-  <TabItem label="uv">
-    ```bash
-    uv tool install falcon-mcp
-    ```
-  </TabItem>
 </Tabs>
 
-</div>
+Then set your CrowdStrike credentials and run:
+
+```bash
+export FALCON_CLIENT_ID="your-client-id"
+export FALCON_CLIENT_SECRET="your-client-secret"
+export FALCON_BASE_URL="https://api.crowdstrike.com"
+
+falcon-mcp
+``` */}
+
+:::note[Public Preview]
+This project is under active development. Features may change before the stable 1.0 release.
+Feedback is welcome through [GitHub Issues](https://github.com/CrowdStrike/falcon-mcp/issues).
+:::

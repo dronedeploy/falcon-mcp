@@ -3,8 +3,6 @@ title: Identity Protection
 description: Comprehensive entity investigation and identity protection analysis.
 ---
 
-# Identity Protection Module
-
 Comprehensive entity investigation and identity protection analysis.
 
 ## API Scopes
@@ -24,6 +22,7 @@ Comprehensive entity investigation and identity protection analysis.
 Comprehensive entity investigation tool.
 
 This tool provides complete entity investigation capabilities including:
+
 - Entity search and details lookup
 - Activity timeline analysis
 - Relationship and association mapping
