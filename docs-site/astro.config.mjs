@@ -6,14 +6,12 @@ export default defineConfig({
   base: '/falcon-mcp',
   integrations: [
     starlight({
-      title: 'FALCON MCP',
-      logo: {
-        light: './src/assets/logo-light.svg',
-        dark: './src/assets/logo-dark.svg',
-        replacesTitle: false,
-      },
+      title: 'Falcon MCP',
       social: {
         github: 'https://github.com/CrowdStrike/falcon-mcp',
+      },
+      expressiveCode: {
+        themes: ['github-dark-default', 'github-light-default']
       },
       customCss: ['./src/styles/custom.css'],
       sidebar: [

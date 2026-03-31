@@ -1,132 +1,5 @@
-/* CrowdStrike Brand Theme for Starlight */
-/* Colors from 2026 CrowdStrike Brand Guide */
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
-
-/* ===== Dark mode (default) ===== */
-:root {
-  --sl-font: 'Inter', sans-serif;
-  --sl-font-mono: 'JetBrains Mono', monospace;
-
-  /* CRWD color tokens */
-  --crwd-red: #EC0000;
-  --crwd-dark-red: #B52026;
-  --crwd-black: #000000;
-  --crwd-deep-sea: #3D474F;
-  --crwd-storm: #A7A9AC;
-  --crwd-cloud: #F8F8F8;
-  --crwd-surf: #61C4C9;
-  --crwd-bg: #0a0a0a;
-  --crwd-surface: #111111;
-  --crwd-elevated: #1a1a1a;
-}
-
-[data-theme='dark'],
-:root {
-  --sl-color-accent-low: #2a0000;
-  --sl-color-accent: var(--crwd-red);
-  --sl-color-accent-high: #ff3333;
-
-  --sl-color-white: var(--crwd-cloud);
-  --sl-color-gray-1: #e0e0e0;
-  --sl-color-gray-2: var(--crwd-storm);
-  --sl-color-gray-3: #6b6b6b;
-  --sl-color-gray-4: #3a3a3a;
-  --sl-color-gray-5: var(--crwd-elevated);
-  --sl-color-gray-6: var(--crwd-surface);
-  --sl-color-gray-7: var(--crwd-bg);
-  --sl-color-black: var(--crwd-black);
-
-  --sl-color-bg-nav: var(--crwd-black);
-  --sl-color-bg-sidebar: var(--crwd-black);
-  --sl-color-bg: var(--crwd-bg);
-
-  --sl-color-text: var(--crwd-cloud);
-  --sl-color-text-accent: var(--crwd-red);
-}
-
-/* ===== Light mode ===== */
-:root[data-theme='light'] {
-  --sl-color-accent-low: #fff0f0;
-  --sl-color-accent: var(--crwd-red);
-  --sl-color-accent-high: #990000;
-
-  /* Inverted scale: white=darkest (headings), black=lightest (bg) */
-  --sl-color-white: var(--crwd-black);       /* #000000 — headings */
-  --sl-color-gray-1: #1a1a1a;               /* dark — emphasized text */
-  --sl-color-gray-2: #333333;               /* body text, sidebar links */
-  --sl-color-gray-3: #666666;               /* secondary text, TOC links */
-  --sl-color-gray-4: #999999;               /* muted text */
-  --sl-color-gray-5: #d0d0d0;              /* borders, dividers */
-  --sl-color-gray-6: #eeeeee;               /* subtle surfaces, inline code bg */
-  --sl-color-gray-7: var(--crwd-cloud);     /* #F8F8F8 — near-white bg */
-  --sl-color-black: #ffffff;                /* pure white — base surface bg */
-
-  --sl-color-bg-nav: var(--crwd-cloud);
-  --sl-color-bg-sidebar: var(--crwd-cloud);
-  --sl-color-bg: var(--crwd-cloud);
-
-  --sl-color-text: #333333;
-  --sl-color-text-accent: var(--crwd-red);
-}
-
-/* ===== Sidebar active state — red left border ===== */
-nav.sidebar-content a[aria-current='page'] {
-  border-left: 3px solid var(--crwd-red);
-  padding-left: 0.5rem;
-  color: var(--crwd-red);
-  font-weight: 600;
-}
-
-/* ===== Sidebar group labels — uppercase storm color ===== */
-.sidebar-content .top-level > li > details > summary span,
-.sidebar-content .top-level > li > a span {
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 700;
-  font-size: 0.75rem;
-}
-
-/* ===== Code blocks — red top border accent ===== */
-pre {
-  border-top: 2px solid var(--crwd-red) !important;
-  border-radius: 6px;
-}
-
-/* ===== Inline code — surf/teal text ===== */
-:not(pre) > code:not([class*="terminal"]) {
-  color: var(--crwd-surf);
-  background: var(--crwd-elevated);
-  padding: 0.15em 0.35em;
-  border-radius: 4px;
-  font-size: 0.9em;
-}
-
-:root[data-theme='light'] :not(pre) > code:not([class*="terminal"]) {
-  color: #2a8a8f;
-  background: #eeeeee;
-}
-
-/* ===== Links — CRWD Red ===== */
-.sl-markdown-content a {
-  color: var(--crwd-red);
-  text-decoration: none;
-}
-
-.sl-markdown-content a:hover {
-  text-decoration: underline;
-  color: var(--crwd-dark-red);
-}
-
-/* ===== Admonitions ===== */
-.starlight-aside--tip {
-  border-color: var(--crwd-surf);
-}
-
-.starlight-aside--caution,
-.starlight-aside--danger {
-  border-color: var(--crwd-red);
-}
+/* ===== Structural / layout overrides only ===== */
+/* Brand theming removed — Starlight defaults apply */
 
 /* ===== Headings ===== */
 .sl-markdown-content h1,
@@ -136,21 +9,6 @@ pre {
   font-weight: 700;
 }
 
-/* ===== TOC active state ===== */
-starlight-toc a[aria-current='true'] {
-  color: var(--crwd-red);
-  font-weight: 600;
-}
-
-/* ===== Header — pin search next to right icons ===== */
-.header.sl-flex {
-  grid-template-columns: auto 1fr auto !important;
-}
-
-.header.sl-flex > div:nth-child(2) {
-  justify-self: end;
-}
-
 /* ===== Expressive Code terminal dots — colored macOS style ===== */
 .expressive-code .frame.is-terminal .header::before {
   background-color: transparent !important;
@@ -158,6 +16,26 @@ starlight-toc a[aria-current='true'] {
   -webkit-mask-image: none !important;
   mask-image: none !important;
   opacity: 1 !important;
+}
+
+/* ===== Homepage Quick Start section ===== */
+.homepage-install {
+  max-width: 480px;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+
+.homepage-install h2 {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--sl-color-gray-3);
+  border: none;
+}
+
+.homepage-install .expressive-code {
+  text-align: left;
 }
 
 /* ===== Tables — prevent inline code from wrapping ===== */
