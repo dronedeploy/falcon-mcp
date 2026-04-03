@@ -1,34 +1,18 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import starlightThemeGalaxy from 'starlight-theme-galaxy';
 
 export default defineConfig({
   site: 'https://crowdstrike.github.io',
   base: '/falcon-mcp',
   integrations: [
     starlight({
+      plugins: [starlightThemeGalaxy()],
       title: 'Falcon MCP',
       social: {
         github: 'https://github.com/CrowdStrike/falcon-mcp',
       },
-      expressiveCode: {
-        // themes: ['github-dark-high-contrast', 'light-plus'],
-        styleOverrides: {
-          borderRadius: '0.4rem',
-          borderColor: 'var(--fb-code-block-bg-color)',
-          codeBackground: 'var(--fb-code-block-bg-color)',
-          frames: {
-            shadowColor: 'var(--sl-shadow-sm)',
-            editorActiveTabIndicatorTopColor: 'unset',
-            editorActiveTabIndicatorBottomColor: 'var(--sl-color-gray-3)',
-            editorTabBarBorderBottomColor: 'var(--fb-code-block-bg-color)',
-            frameBoxShadowCssValue: 'unset',
-          },
-        },
-      },
-      customCss: [
-        './src/styles/galaxy/index.css',
-        './src/styles/custom.css',
-      ],
+      customCss: ['./src/styles/custom.css'],
       sidebar: [
         {
           label: 'Getting Started',
