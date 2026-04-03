@@ -9,9 +9,9 @@ export default defineConfig({
     starlight({
       plugins: [starlightThemeGalaxy()],
       title: 'Falcon MCP',
-      social: {
-        github: 'https://github.com/CrowdStrike/falcon-mcp',
-      },
+      social: [
+        { label: 'GitHub', icon: 'github', href: 'https://github.com/CrowdStrike/falcon-mcp' },
+      ],
       customCss: ['./src/styles/custom.css'],
       sidebar: [
         {
