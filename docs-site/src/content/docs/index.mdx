@@ -23,9 +23,8 @@ hero:
 ---
 
 import { Tabs, TabItem, CardGrid, Card } from '@astrojs/starlight/components';
-import ImageCard from '../../components/ImageCard.astro';
 
-<CardGrid>
+<CardGrid stagger>
   <Card title="AI-Powered Security Ops" icon="rocket">
     Let AI agents investigate threats, triage detections, and analyze incidents across your Falcon environment.
   </Card>
@@ -62,7 +61,7 @@ export FALCON_BASE_URL="https://api.crowdstrike.com"
 falcon-mcp
 ``` */}
 
-:::note[Public Preview]
+{/* :::note[Public Preview]
 This project is under active development. Features may change before the stable 1.0 release.
 Feedback is welcome through [GitHub Issues](https://github.com/CrowdStrike/falcon-mcp/issues).
-:::
+::: */}
