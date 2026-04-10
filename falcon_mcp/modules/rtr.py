@@ -9,20 +9,18 @@ from textwrap import dedent
 from typing import Any
 
 from mcp.server import FastMCP
+from mcp.server.fastmcp.resources import TextResource
 from mcp.types import ToolAnnotations
-from pydantic import Field
+from pydantic import AnyUrl, Field
 
 from falcon_mcp.common.logging import get_logger
 from falcon_mcp.modules.base import BaseModule
+from falcon_mcp.resources.rtr import (
+    EMBEDDED_FQL_SYNTAX,
+    SEARCH_RTR_SESSIONS_FQL_DOCUMENTATION,
+)
 
 logger = get_logger(__name__)
-
-SAFE_STATEFUL_ANNOTATIONS = ToolAnnotations(
-    readOnlyHint=False,
-    destructiveHint=False,
-    idempotentHint=False,
-    openWorldHint=True,
-)
 
 
 class RTRModule(BaseModule):
@@ -50,21 +48,36 @@ class RTRModule(BaseModule):
             server=server,
             method=self.init_session,
             name="init_rtr_session",
-            annotations=SAFE_STATEFUL_ANNOTATIONS,
+            annotations=ToolAnnotations(
+                readOnlyHint=False,
+                destructiveHint=False,
+                idempotentHint=False,
+                openWorldHint=True,
+            ),
         )
 
         self._add_tool(
             server=server,
             method=self.pulse_session,
             name="pulse_rtr_session",
-            annotations=SAFE_STATEFUL_ANNOTATIONS,
+            annotations=ToolAnnotations(
+                readOnlyHint=False,
+                destructiveHint=False,
+                idempotentHint=False,
+                openWorldHint=True,
+            ),
         )
 
         self._add_tool(
             server=server,
             method=self.execute_read_only_command,
             name="execute_rtr_read_only_command",
-            annotations=SAFE_STATEFUL_ANNOTATIONS,
+            annotations=ToolAnnotations(
+                readOnlyHint=False,
+                destructiveHint=False,
+                idempotentHint=False,
+                openWorldHint=True,
+            ),
         )
 
         self._add_tool(
@@ -83,37 +96,38 @@ class RTRModule(BaseModule):
             server=server,
             method=self.delete_session,
             name="delete_rtr_session",
-            annotations=SAFE_STATEFUL_ANNOTATIONS,
+            annotations=ToolAnnotations(
+                readOnlyHint=False,
+                destructiveHint=True,
+                idempotentHint=True,
+                openWorldHint=True,
+            ),
+        )
+
+    def register_resources(self, server: FastMCP) -> None:
+        """Register resources with the MCP server.
+
+        Args:
+            server: MCP server instance
+        """
+        search_rtr_sessions_fql_resource = TextResource(
+            uri=AnyUrl("falcon://rtr/sessions/search/fql-guide"),
+            name="falcon_search_rtr_sessions_fql_guide",
+            description="Contains the guide for the `filter` param of the `falcon_search_rtr_sessions` tool.",
+            text=SEARCH_RTR_SESSIONS_FQL_DOCUMENTATION,
+        )
+
+        self._add_resource(
+            server,
+            search_rtr_sessions_fql_resource,
         )
 
     def search_sessions(
         self,
         filter: str | None = Field(
             default=None,
-            description=dedent("""
-                FQL expression used to limit RTR sessions.
-
-                Common fields include:
-                - `id`
-                - `created_at`
-                - `updated_at`
-                - `deleted_at`
-                - `aid`
-                - `hostname`
-                - `user_id`
-                - `origin`
-                - `cloud_request_id`
-                - `command_string`
-                - `base_command`
-                - `offline_queued`
-                - `commands_queued`
-
-                `user_id:'@me'` restricts results to the current API user.
-            """).strip(),
-            examples={
-                "hostname:'BRR-WB-LIB-22'",
-                "aid:'2c5c4e7738004deaa9dfcdb86f633f3e'",
-            },
+            description=EMBEDDED_FQL_SYNTAX,
+            examples=["hostname:'BRR-WB-LIB-22'", "aid:'2c5c4e7738...'"],
         ),
         limit: int = Field(
             default=10,
@@ -131,14 +145,15 @@ class RTRModule(BaseModule):
                 Sort RTR sessions by a supported session property such as:
                 `created_at.asc`, `updated_at.desc`, or `hostname.asc`.
             """).strip(),
-            examples={"created_at.desc", "hostname.asc"},
+            examples=["created_at.desc", "hostname.asc"],
         ),
     ) -> list[dict[str, Any]] | dict[str, Any]:
         """Search RTR sessions and return full session details.
 
-        Use this tool to discover RTR sessions by hostname, aid, command metadata,
-        or origin. If matching session IDs are found, the tool fetches their full
-        details before returning.
+        IMPORTANT: You must use the `falcon://rtr/sessions/search/fql-guide` resource when you need to use the `filter` parameter.
+        This resource contains the guide on how to build the FQL `filter` parameter for the `falcon_search_rtr_sessions` tool.
+
+        Returns FQL syntax guide on error or empty results to help refine queries.
         """
         session_ids = self._base_search_api_call(
             operation="RTR_ListAllSessions",
@@ -152,10 +167,14 @@ class RTRModule(BaseModule):
         )
 
         if self._is_error(session_ids):
-            return [session_ids]
+            return self._format_fql_error_response(
+                [session_ids], filter, SEARCH_RTR_SESSIONS_FQL_DOCUMENTATION
+            )
 
         if not session_ids:
-            return []
+            return self._format_fql_error_response(
+                [], filter, SEARCH_RTR_SESSIONS_FQL_DOCUMENTATION
+            )
 
         details = self._base_get_by_ids(
             operation="RTR_ListSessions",
@@ -215,12 +234,14 @@ class RTRModule(BaseModule):
         """Initialize or reuse an RTR session for a single host."""
         return self._base_query_api_call(
             operation="RTR_InitSession",
+            query_params={
+                "timeout": timeout,
+                "timeout_duration": timeout_duration,
+            },
             body_params={
                 "device_id": device_id,
                 "origin": origin,
                 "queue_offline": queue_offline,
-                "timeout": timeout,
-                "timeout_duration": timeout_duration,
             },
             error_message="Failed to initialize RTR session",
         )
@@ -253,11 +274,11 @@ class RTRModule(BaseModule):
     def execute_read_only_command(
         self,
         session_id: str = Field(
-            description="RTR session ID returned from init_rtr_session or search_rtr_sessions.",
+            description="RTR session ID returned from falcon_init_rtr_session or falcon_search_rtr_sessions.",
         ),
         base_command: str = Field(
             description="Read-only RTR base command to execute, such as `ls`, `ps`, `cat`, `filehash`, or `reg`.",
-            examples={"ls", "ps", "filehash"},
+            examples=["ls", "ps", "filehash"],
         ),
         command_string: str | None = Field(
             default=None,
@@ -288,7 +309,7 @@ class RTRModule(BaseModule):
     def check_command_status(
         self,
         cloud_request_id: str = Field(
-            description="Cloud request ID returned from execute_rtr_read_only_command.",
+            description="Cloud request ID returned from falcon_execute_rtr_read_only_command.",
         ),
         sequence_id: int = Field(
             default=0,
