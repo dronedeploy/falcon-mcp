@@ -26,6 +26,7 @@
   - [Hosts Module](#hosts-module)
   - [Identity Protection Module](#identity-protection-module)
   - [Incidents Module](#incidents-module)
+  - [Real Time Response Module](#real-time-response-module)
   - [NGSIEM Module](#ngsiem-module)
   - [Intel Module](#intel-module)
   - [IOC Module](#ioc-module)
@@ -92,6 +93,7 @@ The Falcon MCP Server supports different modules, each requiring specific API sc
 | **Hosts** | `Hosts:read` | Manage and query host/device information |
 | **Identity Protection** | `Identity Protection Entities:read`<br>`Identity Protection Timeline:read`<br>`Identity Protection Detections:read`<br>`Identity Protection Assessment:read`<br>`Identity Protection GraphQL:write` | Comprehensive entity investigation and identity protection analysis |
 | **Incidents** | `Incidents:read` | Analyze security incidents and coordinated activities |
+| **Real Time Response** | `Real time response:read`<br>`Real time response:write` | Initialize RTR sessions, execute read-only triage commands, inspect command output, and review RTR session artifacts |
 | **NGSIEM** | `NGSIEM:read`<br>`NGSIEM:write` | Execute CQL queries against Next-Gen SIEM |
 | **Intel** | `Actors (Falcon Intelligence):read`<br>`Indicators (Falcon Intelligence):read`<br>`Reports (Falcon Intelligence):read` | Research threat actors, IOCs, and intelligence reports |
 | **IOC** | `IOC Management:read`<br>`IOC Management:write` | Search, create, and remove custom IOCs using IOC Service Collection endpoints |
@@ -241,6 +243,26 @@ Provides tools for accessing and analyzing CrowdStrike Falcon incidents:
 - `falcon://incidents/behaviors/fql-guide`: Comprehensive FQL documentation and examples for behavior searches
 
 **Use Cases**: Incident management, threat assessment, attack pattern analysis, security posture monitoring
+
+### Real Time Response Module
+
+**API Scopes Required**:
+
+- `Real time response:read`
+- `Real time response:write`
+
+Provides tools for host-level hunt and triage workflows through CrowdStrike Real Time Response:
+
+- `falcon_search_rtr_sessions`: Search RTR sessions and return full session details
+- `falcon_get_rtr_session_details`: Retrieve detailed metadata for specific RTR session IDs
+- `falcon_init_rtr_session`: Initialize or reuse an RTR session for a host
+- `falcon_pulse_rtr_session`: Refresh an RTR session timeout for a host
+- `falcon_execute_rtr_read_only_command`: Execute a read-only RTR command such as `ls`, `ps`, `cat`, or `filehash`
+- `falcon_check_rtr_command_status`: Retrieve command execution status and output chunks
+- `falcon_list_rtr_session_files`: List files associated with an RTR session
+- `falcon_delete_rtr_session`: Close an RTR session
+
+**Use Cases**: Live host triage, evidence collection, execution verification, session-aware investigative workflows
 
 ### NGSIEM Module
 

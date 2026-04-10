@@ -77,6 +77,15 @@ API_SCOPE_REQUIREMENTS = {
     "StartSearchV1": ["NGSIEM:write"],
     "GetSearchStatusV1": ["NGSIEM:read"],
     "StopSearchV1": ["NGSIEM:write"],
+    # Real Time Response operations
+    "RTR_ListAllSessions": ["Real time response:read"],
+    "RTR_ListSessions": ["Real time response:read"],
+    "RTR_InitSession": ["Real time response:read"],
+    "RTR_DeleteSession": ["Real time response:read"],
+    "RTR_PulseSession": ["Real time response:read"],
+    "RTR_CheckCommandStatus": ["Real time response:read"],
+    "RTR_ExecuteCommand": ["Real time response:read"],
+    "RTR_ListFilesV2": ["Real time response:write"],
     # Custom IOA operations
     "query_rule_groups_full": ["Custom IOA Rules:read"],
     "query_platformsMixin0": ["Custom IOA Rules:read"],
