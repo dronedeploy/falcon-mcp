@@ -51,10 +51,14 @@ To work with multiple child CIDs simultaneously, run separate server instances:
 ```bash
 # Parent CID (default)
 falcon-mcp --transport streamable-http --port 8000
+```
 
+```bash
 # Child CID 1
 falcon-mcp --member-cid "child-cid-1" --transport streamable-http --port 8001
+```
 
+```bash
 # Child CID 2
 falcon-mcp --member-cid "child-cid-2" --transport streamable-http --port 8002
 ```

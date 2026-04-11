@@ -12,17 +12,20 @@ Thank you for your interest in contributing to the Falcon MCP Server! This guide
 2. **Fork the repository** to your GitHub account.
 
 3. **Clone your fork:**
+
    ```bash
    git clone https://github.com/your-username/falcon-mcp.git
    cd falcon-mcp
    ```
 
 4. **Create a branch:**
+
    ```bash
    git checkout -b my-feature-branch
    ```
 
 5. **Install dependencies:**
+
    ```bash
    uv sync --all-extras
    source .venv/bin/activate
@@ -31,10 +34,17 @@ Thank you for your interest in contributing to the Falcon MCP Server! This guide
 6. **Make your changes** following the coding standards below.
 
 7. **Run linting:**
-   ```bash
-   uv run ruff check . --select I   # Import sorting
-   uv run ruff check .              # General linting
-   uv run ruff check --fix .        # Auto-fix issues
+
+   ```bash title="Import sorting"
+   uv run ruff check . --select I
+   ```
+
+   ```bash title="General linting"
+   uv run ruff check .
+   ```
+
+   ```bash title="Auto-fix issues"
+   uv run ruff check --fix .
    ```
 
 8. **Commit** using Conventional Commits (see below).
@@ -48,6 +58,7 @@ This project uses [Conventional Commits](https://www.conventionalcommits.org/) f
 **Format:** `<type>[optional scope]: <description>`
 
 **Common types:**
+
 - `feat:` — new feature (triggers minor version bump)
 - `fix:` — bug fix (triggers patch version bump)
 - `docs:` — documentation changes
@@ -57,7 +68,7 @@ This project uses [Conventional Commits](https://www.conventionalcommits.org/) f
 
 **Examples with scopes (preferred):**
 
-```bash
+```bash frame="none"
 git commit -m "feat(modules/cloud): add list kubernetes clusters tool"
 git commit -m "fix(modules/detections): resolve authentication error"
 git commit -m "docs(contributing): update conventional commits guidance"
@@ -84,14 +95,21 @@ See [GitHub's fork syncing docs](https://docs.github.com/en/github/collaborating
 
 ## Running Tests
 
+Unit tests:
+
 ```bash
-# Unit tests
 uv run pytest
+```
 
-# Integration tests (requires API credentials)
+Integration tests (requires API credentials):
+
+```bash
 uv run pytest --run-integration tests/integration/
+```
 
-# E2E tests (requires API credentials + OpenAI key)
+E2E tests (requires API credentials + OpenAI key):
+
+```bash
 uv run pytest --run-e2e tests/e2e/
 ```
 

@@ -7,30 +7,49 @@ The Falcon MCP Server is available as a pre-built container image at `quay.io/cr
 
 ## Using the Pre-built Image (Recommended)
 
+Pull the latest image:
+
 ```bash
-# Pull the latest image
 docker pull quay.io/crowdstrike/falcon-mcp:latest
+```
 
-# Run with stdio transport (requires -i flag)
+Run with stdio transport (requires -i flag):
+
+```bash
 docker run -i --rm --env-file /path/to/.env quay.io/crowdstrike/falcon-mcp:latest
+```
 
-# Run with SSE transport
+Run with SSE transport:
+
+```bash
 docker run --rm -p 8000:8000 --env-file /path/to/.env \
   quay.io/crowdstrike/falcon-mcp:latest --transport sse --host 0.0.0.0
+```
 
-# Run with streamable-http transport
+Run with streamable-http transport:
+
+```bash
 docker run --rm -p 8000:8000 --env-file /path/to/.env \
   quay.io/crowdstrike/falcon-mcp:latest --transport streamable-http --host 0.0.0.0
+```
 
-# Run with custom port
+Run with custom port:
+
+```bash
 docker run --rm -p 8080:8080 --env-file /path/to/.env \
   quay.io/crowdstrike/falcon-mcp:latest --transport streamable-http --host 0.0.0.0 --port 8080
+```
 
-# Run with specific modules (stdio transport)
+Run with specific modules (stdio transport):
+
+```bash
 docker run -i --rm --env-file /path/to/.env \
   quay.io/crowdstrike/falcon-mcp:latest --modules detections,incidents,spotlight,idp
+```
 
-# Use a pinned version
+Use a pinned version:
+
+```bash
 docker run -i --rm --env-file /path/to/.env \
   quay.io/crowdstrike/falcon-mcp:1.2.3
 ```
@@ -55,13 +74,17 @@ The `-i` flag is required when using the default stdio transport.
 
 ## Building Locally (Development)
 
-For development or customization, build the image from source:
+For development or customization, build the image from source.
+
+Build the image:
 
 ```bash
-# Build the image
 docker build -t falcon-mcp .
+```
 
-# Run the locally built image
+Run the locally built image:
+
+```bash
 docker run --rm \
   -e FALCON_CLIENT_ID=your_client_id \
   -e FALCON_CLIENT_SECRET=your_secret \

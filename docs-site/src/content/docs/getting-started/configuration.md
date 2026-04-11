@@ -46,7 +46,7 @@ curl -o .env https://raw.githubusercontent.com/CrowdStrike/falcon-mcp/main/.env.
 
 **Option 3: Create manually**
 
-```bash
+```bash frame="code"
 # Required Configuration
 FALCON_CLIENT_ID=your-client-id
 FALCON_CLIENT_SECRET=your-client-secret
@@ -70,7 +70,9 @@ By default, all available modules are enabled. To restrict which modules load:
 ```bash
 # Command line (highest priority)
 falcon-mcp --modules detections,incidents,intel
+```
 
+```bash
 # Environment variable (fallback)
 export FALCON_MCP_MODULES=detections,incidents,intel
 falcon-mcp

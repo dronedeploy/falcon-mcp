@@ -1,10 +1,24 @@
-/* ===== Glass header — override Starlight's unlayered opaque --sl-color-bg-nav ===== */
-/* Galaxy's @layer galaxy cannot beat Starlight's unlayered styles, so this must live here. */
+/* ===== CrowdStrike brand colors ===== */
+/* Override Galaxy's blue-purple accent with CRWD Red palette.
+   Brand guide: #EC0000 primary, #B52026 dark, ratio ≈ 75% red / 25% blue. */
+
 :root {
-  --sl-color-bg-nav: transparent;
+  --sl-color-accent: #61C4C9;
+  --sl-color-accent-low: hsl(0, 80%, 20%);
+  --sl-color-accent-high: #61C4C9;
+  /* --purple-hsl: 0, 100%, 46%; */
+  --sl-hue-blue: 0;
+  --fb-table-header-bg-color: hsl(0, 91%, 5%);
+  --fb-toc-color-current-bg: rgba(236, 0, 0, 0.19);
 }
+
 :root[data-theme='light'] {
-  --sl-color-bg-nav: transparent;
+  --sl-color-accent: #d40000;
+  --sl-color-accent-low: hsl(0, 80%, 92%);
+  --sl-color-accent-high: #8b0000;
+  --purple-hsl: 0, 100%, 46%;
+  --fb-steps-bg-color: #d40000;
+  --fb-toc-color-current-bg: rgba(236, 0, 0, 0.12);
 }
 
 

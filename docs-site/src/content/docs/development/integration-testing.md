@@ -15,9 +15,19 @@ Integration tests make real API calls to validate that modules work correctly ag
 
 ## Configuration
 
+:::note
 Requires valid CrowdStrike API credentials:
+:::
+
+Copy the example file for development:
 
 ```bash
+cp .env.dev.example .env
+```
+
+Then configure the variables:
+
+```bash frame="none"
 # Required
 FALCON_CLIENT_ID=your-client-id
 FALCON_CLIENT_SECRET=your-client-secret
@@ -26,25 +36,29 @@ FALCON_CLIENT_SECRET=your-client-secret
 FALCON_BASE_URL=https://api.crowdstrike.com
 ```
 
-Copy the example file for development:
-
-```bash
-cp .env.dev.example .env
-```
-
 ## Running Integration Tests
 
+Run all integration tests:
+
 ```bash
-# Run all integration tests
 uv run pytest --run-integration tests/integration/
+```
 
-# Run for a specific module
+Run for a specific module:
+
+```bash
 uv run pytest --run-integration tests/integration/test_detections.py
+```
 
-# Run a specific test
+Run a specific test:
+
+```bash
 uv run pytest --run-integration tests/integration/test_scheduled_reports.py::TestScheduledReportsIntegration::test_search_scheduled_reports_returns_details
+```
 
-# With verbose output (-s is required to see print statements)
+With verbose output (-s is required to see print statements):
+
+```bash
 uv run pytest --run-integration -v -s tests/integration/
 ```
 

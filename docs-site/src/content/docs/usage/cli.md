@@ -46,10 +46,12 @@ falcon-mcp --transport streamable-http --api-key your-secret-key
 Enable specific modules by name (comma-separated):
 
 ```bash
-# Enable specific modules
 falcon-mcp --modules detections,incidents,intel,spotlight,idp
+```
 
-# Enable only one module
+Enable only one module:
+
+```bash
 falcon-mcp --modules detections
 ```
 

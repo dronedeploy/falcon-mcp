@@ -8,7 +8,12 @@ export default defineConfig({
   integrations: [
     starlight({
       plugins: [starlightThemeGalaxy()],
+      logo: {
+        src: './src/assets/hunting.png',
+        replacesTitle: false
+      },
       title: 'Falcon MCP',
+      favicon: '/icons/faviconV2.png',
       social: [
         { label: 'GitHub', icon: 'github', href: 'https://github.com/CrowdStrike/falcon-mcp' },
       ],

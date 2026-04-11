@@ -1,6 +1,6 @@
 ---
 title: Falcon MCP Server
-description: Connect AI assistants to the CrowdStrike Falcon platform via the Model Context Protocol.
+pagefind: false
 template: splash
 hero:
   title: Falcon MCP Server
@@ -22,7 +22,7 @@ hero:
         rel: noopener noreferrer
 ---
 
-import { Tabs, TabItem, CardGrid, Card } from '@astrojs/starlight/components';
+import { CardGrid, Card } from '@astrojs/starlight/components';
 
 <CardGrid>
   <Card title="AI-Powered Security Ops" icon="rocket">
@@ -35,33 +35,3 @@ import { Tabs, TabItem, CardGrid, Card } from '@astrojs/starlight/components';
     Run as a CLI tool, Docker container, or deploy to AWS Bedrock and Google Cloud.
   </Card>
 </CardGrid>
-
-{/* ## Quick Start
-
-<Tabs syncKey="pkg">
-  <TabItem label="uv (recommended)">
-    ```bash
-    uv tool install falcon-mcp
-    ```
-  </TabItem>
-  <TabItem label="pip">
-    ```bash
-    pip install falcon-mcp
-    ```
-  </TabItem>
-</Tabs>
-
-Then set your CrowdStrike credentials and run:
-
-```bash
-export FALCON_CLIENT_ID="your-client-id"
-export FALCON_CLIENT_SECRET="your-client-secret"
-export FALCON_BASE_URL="https://api.crowdstrike.com"
-
-falcon-mcp
-``` */}
-
-{/* :::note[Public Preview]
-This project is under active development. Features may change before the stable 1.0 release.
-Feedback is welcome through [GitHub Issues](https://github.com/CrowdStrike/falcon-mcp/issues).
-::: */}

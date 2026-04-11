@@ -11,8 +11,7 @@ The simplest transport. The MCP client manages the server process directly via s
 
 ```bash
 falcon-mcp
-# or explicitly:
-falcon-mcp --transport stdio
+# or explicitly: falcon-mcp --transport stdio
 ```
 
 **Best for:** Claude Desktop, Cline/VS Code, and any MCP client that supports subprocess management.

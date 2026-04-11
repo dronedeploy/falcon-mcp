@@ -7,6 +7,10 @@ End-to-end tests run a real LLM agent connected to the Falcon MCP Server to vali
 
 ## Configuration
 
+:::note
+Requires valid CrowdStrike API credentials and OpenAI API key:
+:::
+
 Copy the development example file:
 
 ```bash
@@ -15,7 +19,14 @@ cp .env.dev.example .env
 
 Then configure the E2E testing variables:
 
-```bash
+```bash frame="none"
+# Required
+FALCON_CLIENT_ID=your-client-id
+FALCON_CLIENT_SECRET=your-client-secret
+
+# Optional (defaults to US-1)
+FALCON_BASE_URL=https://api.crowdstrike.com
+
 # API key for OpenAI or compatible API
 OPENAI_API_KEY=your-api-key
 

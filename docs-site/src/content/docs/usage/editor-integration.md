@@ -111,6 +111,10 @@ Cline supports stdio and SSE transports. Add to your Cline MCP settings:
 ```bash
 # Install uv first
 gemini extensions install https://github.com/CrowdStrike/falcon-mcp
+```
+
+```bash
+# Copy .env file
 cp /path/to/.env ~/.gemini/extensions/falcon-mcp/.env
 ```
 
@@ -121,7 +125,9 @@ For clients that connect via URL (SSE or streamable-http), start the server firs
 ```bash
 # SSE
 falcon-mcp --transport sse --host 0.0.0.0 --port 8000
+```
 
+```bash
 # Streamable HTTP
 falcon-mcp --transport streamable-http --host 0.0.0.0 --port 8000
 ```

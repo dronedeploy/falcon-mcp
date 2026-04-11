@@ -26,14 +26,14 @@ Use these fields when filtering:
 
 ## Examples
 
-```fql
 # Recent high-severity items
 status:'new'+severity:>=3
 
 # Items in the last 24 hours
 created_timestamp:>'2024-01-01T00:00:00Z'
-```
+
 """
+
 ```
 
 ## Step 2: Register the Resource
@@ -69,6 +69,7 @@ falcon://<module-name>/<resource-name>/<type>
 ```
 
 Examples:
+
 - `falcon://detections/search/fql-guide`
 - `falcon://intel/actors/fql-guide`
 - `falcon://hosts/search/fql-guide`
@@ -111,7 +112,7 @@ DOCUMENTATION = """## FQL Filter Guide\n\n""" + generate_md_table(FQL_FILTERS)
 
 ## Commit Messages
 
-```bash
+```bash frame="none"
 git commit -m "feat(resources): add FQL guide for [module-name] module"
 git commit -m "refactor(resources): improve clarity in detections FQL guide"
 ```
