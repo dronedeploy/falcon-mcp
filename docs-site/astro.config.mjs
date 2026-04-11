@@ -8,6 +8,9 @@ export default defineConfig({
   integrations: [
     starlight({
       plugins: [starlightThemeGalaxy()],
+      components: {
+        Hero: './src/components/Hero.astro',
+      },
       logo: {
         src: './src/assets/hunting.png',
         replacesTitle: false

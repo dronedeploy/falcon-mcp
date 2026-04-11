@@ -1,0 +1,18 @@
+---
+import Default from '@astrojs/starlight/components/Hero.astro';
+---
+
+<Default {...Astro.props}><slot /></Default>
+
+<script>
+  // Inject individual trail elements into .sl-container so each gets its own animation timing.
+  const container = document.querySelector('[data-has-hero] .sl-container');
+  if (container && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    for (let i = 1; i <= 5; i++) {
+      const trail = document.createElement('div');
+      trail.className = 'tron-trail';
+      trail.dataset.t = String(i);
+      container.appendChild(trail);
+    }
+  }
+</script>
