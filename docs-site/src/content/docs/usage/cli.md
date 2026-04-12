@@ -59,7 +59,7 @@ If no `--modules` flag is provided, all available modules are enabled.
 
 ## All Options
 
-```
+```text
 falcon-mcp --help
 ```
 

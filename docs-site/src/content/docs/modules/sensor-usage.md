@@ -1,6 +1,8 @@
 ---
 title: Sensor Usage
 description: Access and analyze sensor usage data.
+sidebar:
+  order: 10
 ---
 
 Access and analyze sensor usage data.

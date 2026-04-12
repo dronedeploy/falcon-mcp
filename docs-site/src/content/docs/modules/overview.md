@@ -1,6 +1,8 @@
 ---
 title: Module Overview
 description: Overview of all available Falcon MCP modules with API scopes.
+sidebar:
+  order: 0
 ---
 
 The Falcon MCP Server provides the following modules. Each module requires specific CrowdStrike API scopes.

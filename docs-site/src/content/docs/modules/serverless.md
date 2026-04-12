@@ -1,6 +1,8 @@
 ---
 title: Serverless
 description: Search for vulnerabilities in serverless functions across cloud providers.
+sidebar:
+  order: 10
 ---
 
 Search for vulnerabilities in serverless functions across cloud providers.

@@ -1,6 +1,8 @@
 ---
 title: Cloud Security
 description: Find and analyze Kubernetes containers, container image vulnerabilities, and CSPM cloud asset inventory.
+sidebar:
+  order: 10
 ---
 
 Find and analyze Kubernetes containers, container image vulnerabilities, and CSPM cloud asset inventory.

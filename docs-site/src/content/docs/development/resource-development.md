@@ -64,7 +64,7 @@ class YourModule(BaseModule):
 
 Resource URIs follow the pattern:
 
-```
+```text
 falcon://<module-name>/<resource-name>/<type>
 ```
 
@@ -112,7 +112,7 @@ DOCUMENTATION = """## FQL Filter Guide\n\n""" + generate_md_table(FQL_FILTERS)
 
 ## Commit Messages
 
-```bash frame="none"
+```bash
 git commit -m "feat(resources): add FQL guide for [module-name] module"
 git commit -m "refactor(resources): improve clarity in detections FQL guide"
 ```

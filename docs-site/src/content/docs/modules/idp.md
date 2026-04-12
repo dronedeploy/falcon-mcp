@@ -1,6 +1,8 @@
 ---
 title: Identity Protection
 description: Comprehensive entity investigation and identity protection analysis.
+sidebar:
+  order: 10
 ---
 
 Comprehensive entity investigation and identity protection analysis.

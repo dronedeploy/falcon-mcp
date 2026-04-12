@@ -1,6 +1,8 @@
 ---
 title: Intel
 description: Research threat actors, IOCs, and intelligence reports.
+sidebar:
+  order: 10
 ---
 
 Research threat actors, IOCs, and intelligence reports.

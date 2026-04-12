@@ -18,7 +18,12 @@ echo "=== Step 2: Copy changelog ==="
   cat CHANGELOG.md
 } > docs-site/src/content/docs/changelog.md
 
-echo "=== Step 3: Build Starlight site ==="
+echo "=== Step 3: Lint markdown ==="
+npx markdownlint-cli --fix 'docs-site/src/content/docs/**/*.md' \
+  'docs-site/src/content/docs/**/*.mdx' \
+  --ignore 'docs-site/src/content/docs/changelog.md'
+
+echo "=== Step 4: Build Starlight site ==="
 cd "$PROJECT_ROOT/docs-site"
 npm ci
 npm run build

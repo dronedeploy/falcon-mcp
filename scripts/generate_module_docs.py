@@ -342,7 +342,7 @@ def extract_tool_scopes(method: Any, module_cls: type) -> list[str]:
     own_methods = set(module_cls.__dict__.keys())
 
     # Find private helper calls: self._something(
-    helper_names = re.findall(r'self\.(_\w+)\(', method_source)
+    helper_names = re.findall(r"self\.(_\w+)\(", method_source)
     for helper_name in helper_names:
         if helper_name in own_methods:
             helper = module_cls.__dict__[helper_name]
@@ -360,7 +360,6 @@ def extract_tool_scopes(method: Any, module_cls: type) -> list[str]:
             scopes.update(op_scopes)
 
     return sorted(scopes, key=lambda s: (":write" in s, s))
-
 
 
 def extract_tool_info(method: Any) -> dict[str, Any]:
@@ -382,28 +381,30 @@ def extract_resource_info(module_cls: type) -> list[dict[str, str]]:
     resources = []
 
     # Find each TextResource( and collect its full block by tracking parens
-    for m in re.finditer(r'TextResource\(', source):
+    for m in re.finditer(r"TextResource\(", source):
         start = m.end()
         depth = 1
         pos = start
         while pos < len(source) and depth > 0:
-            if source[pos] == '(':
+            if source[pos] == "(":
                 depth += 1
-            elif source[pos] == ')':
+            elif source[pos] == ")":
                 depth -= 1
             pos += 1
-        block = source[start:pos - 1]
+        block = source[start : pos - 1]
 
         uri_m = re.search(r'uri=AnyUrl\(["\']([^"\']+)["\']\)', block)
         name_m = re.search(r'name=["\']([^"\']+)["\']', block)
         desc_m = re.search(r'description=["\']([^"\']+)["\']', block)
 
         if uri_m:
-            resources.append({
-                "uri": uri_m.group(1),
-                "name": name_m.group(1) if name_m else "",
-                "description": desc_m.group(1) if desc_m else "",
-            })
+            resources.append(
+                {
+                    "uri": uri_m.group(1),
+                    "name": name_m.group(1) if name_m else "",
+                    "description": desc_m.group(1) if desc_m else "",
+                }
+            )
 
     return resources
 
@@ -421,7 +422,7 @@ def extract_tool_annotations(module_cls: type) -> dict[str, dict[str, bool]]:
 
         anno = {}
         for key in ["readOnlyHint", "destructiveHint", "idempotentHint"]:
-            val_match = re.search(rf'{key}=(\w+)', anno_str)
+            val_match = re.search(rf"{key}=(\w+)", anno_str)
             if val_match:
                 anno[key] = val_match.group(1) == "True"
 
@@ -443,8 +444,10 @@ def generate_module_page(module_key: str, module_cls: type) -> str:
 
     for attr_name in dir(module_cls):
         method = getattr(module_cls, attr_name)
-        if callable(method) and not attr_name.startswith("_") and attr_name not in (
-            "register_tools", "register_resources"
+        if (
+            callable(method)
+            and not attr_name.startswith("_")
+            and attr_name not in ("register_tools", "register_resources")
         ):
             # Check if this method is registered as a tool
             source = inspect.getsource(module_cls.register_tools)
@@ -480,9 +483,9 @@ def generate_module_page(module_key: str, module_cls: type) -> str:
     lines.append("---")
     lines.append(f"title: {title}")
     lines.append(f"description: {description}")
+    lines.append("sidebar:")
+    lines.append("  order: 10")
     lines.append("---")
-    lines.append("")
-    lines.append(f"# {title} Module")
     lines.append("")
     lines.append(description)
     lines.append("")
@@ -556,11 +559,13 @@ def generate_overview_page(modules: dict[str, type]) -> str:
     lines.append("---")
     lines.append("title: Module Overview")
     lines.append("description: Overview of all available Falcon MCP modules with API scopes.")
+    lines.append("sidebar:")
+    lines.append("  order: 0")
     lines.append("---")
     lines.append("")
-    lines.append("# Module Overview")
-    lines.append("")
-    lines.append("The Falcon MCP Server provides the following modules. Each module requires specific CrowdStrike API scopes.")
+    lines.append(
+        "The Falcon MCP Server provides the following modules. Each module requires specific CrowdStrike API scopes."
+    )
     lines.append("")
     lines.append("| Module | API Scopes | Description |")
     lines.append("|--------|-------------------|-------------|")
@@ -592,14 +597,22 @@ def main() -> None:
     print("  Generated: modules/overview.md")
 
     # Generate per-module pages
+    expected_files = {"overview.md"}
     for key, cls in sorted(modules.items()):
         meta = MODULE_METADATA.get(key, {})
         slug = meta.get("slug", key)
         filename = f"{slug}.md"
+        expected_files.add(filename)
 
         page = generate_module_page(key, cls)
         (OUTPUT_DIR / filename).write_text(page)
         print(f"  Generated: modules/{filename}")
+
+    # Clean up stale module files
+    for existing in OUTPUT_DIR.glob("*.md"):
+        if existing.name not in expected_files:
+            existing.unlink()
+            print(f"  Removed stale: modules/{existing.name}")
 
     print(f"\nDone. {len(modules) + 1} files written to {OUTPUT_DIR}")
 

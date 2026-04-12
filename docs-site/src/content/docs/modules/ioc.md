@@ -1,6 +1,8 @@
 ---
 title: IOC
 description: Search, create, and remove custom indicators of compromise.
+sidebar:
+  order: 10
 ---
 
 Search, create, and remove custom indicators of compromise.

@@ -133,5 +133,6 @@ falcon-mcp --transport streamable-http --host 0.0.0.0 --port 8000
 ```
 
 Then configure your client with:
+
 - SSE URL: `http://your-host:8000/sse`
 - Streamable HTTP URL: `http://your-host:8000/mcp`

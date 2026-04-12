@@ -1,6 +1,8 @@
 ---
 title: Detections
 description: Find and analyze detections to understand malicious activity in your environment.
+sidebar:
+  order: 10
 ---
 
 Find and analyze detections to understand malicious activity in your environment.

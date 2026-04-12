@@ -1,6 +1,8 @@
 ---
 title: Discover
 description: Search and analyze application inventory and unmanaged assets across your environment.
+sidebar:
+  order: 10
 ---
 
 Search and analyze application inventory and unmanaged assets across your environment.

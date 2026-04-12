@@ -1,6 +1,8 @@
 ---
 title: Incidents
 description: Analyze security incidents, behaviors, and coordinated activities.
+sidebar:
+  order: 10
 ---
 
 Analyze security incidents, behaviors, and coordinated activities.

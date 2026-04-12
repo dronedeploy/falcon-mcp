@@ -1,6 +1,8 @@
 ---
 title: Hosts
 description: Manage and query host/device information across your CrowdStrike environment.
+sidebar:
+  order: 10
 ---
 
 Manage and query host/device information across your CrowdStrike environment.

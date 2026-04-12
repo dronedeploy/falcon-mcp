@@ -32,19 +32,19 @@ Configure your CrowdStrike API credentials and server settings using environment
 
 The recommended approach for development is a `.env` file.
 
-**Option 1: Copy from the repository**
+### Option 1: Copy from the repository
 
 ```bash
 cp .env.example .env
 ```
 
-**Option 2: Download from GitHub**
+### Option 2: Download from GitHub
 
 ```bash
 curl -o .env https://raw.githubusercontent.com/CrowdStrike/falcon-mcp/main/.env.example
 ```
 
-**Option 3: Create manually**
+### Option 3: Create manually
 
 ```bash frame="code"
 # Required Configuration

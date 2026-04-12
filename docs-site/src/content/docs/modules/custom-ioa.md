@@ -1,6 +1,8 @@
 ---
 title: Custom IOA
 description: Create and manage Custom IOA behavioral detection rules and rule groups.
+sidebar:
+  order: 10
 ---
 
 Create and manage Custom IOA behavioral detection rules and rule groups.

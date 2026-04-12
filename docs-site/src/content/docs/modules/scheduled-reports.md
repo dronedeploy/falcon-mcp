@@ -1,6 +1,8 @@
 ---
 title: Scheduled Reports
 description: Manage scheduled reports and searches, run on demand, and download results.
+sidebar:
+  order: 10
 ---
 
 Manage scheduled reports and searches, run on demand, and download results.

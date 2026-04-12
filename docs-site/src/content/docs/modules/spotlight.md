@@ -1,6 +1,8 @@
 ---
 title: Spotlight
 description: Manage and analyze vulnerability data and security assessments.
+sidebar:
+  order: 10
 ---
 
 Manage and analyze vulnerability data and security assessments.

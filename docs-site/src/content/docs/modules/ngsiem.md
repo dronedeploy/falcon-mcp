@@ -1,6 +1,8 @@
 ---
 title: NGSIEM
 description: Execute CQL queries against CrowdStrike Next-Gen SIEM.
+sidebar:
+  order: 10
 ---
 
 Execute CQL queries against CrowdStrike Next-Gen SIEM.
